@@ -10,6 +10,10 @@
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/climba/Eat_Burgers/issues"
+  },
+  "homepage": "https://github.com/climba/Eat_Burgers#readme",
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
