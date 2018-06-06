@@ -1,6 +1,7 @@
 {
   "name": "eat_burgers",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -8,7 +9,11 @@
     "start": "node server.js",
     "watch": "nodemon server.js"
   },
-  "author": "",
+  "author": "climba",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/climba/Eat_Burgers.git"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/climba/Eat_Burgers/issues"
