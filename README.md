@@ -1,24 +1,26 @@
-# Command Line interface Ecommerce application
+# Node Express Handlebars application
 
-#### This application connects to a database and tracks sales, inventory and department profit and losses.
+#### This application connects to a database, you can add burgers, and move them from one table to another
 
 ## Use Instructions
 
 1. To run this app, you'll need to install the following Node packages.
 
-   * [CLI Table](https://www.npmjs.com/package/cli-table) run _npm install cli-table_ 
+   * [Body Parser](https://www.npmjs.com/package/body-parser) run _npm install body-parser_ 
    
-   * [inquirer](https://www.npmjs.com/package/inquirer) run _npm install inquirer_ 
+   * [Express](https://www.npmjs.com/package/express) run _npm install express_ 
+      
+   * [Express Handlebars](https://www.npmjs.com/package/express-handlebars) run _npm install express-handlebars_ 
    
    * [mysql](https://www.npmjs.com/package/mysql) run _npm install mysql_ 
 
-2. You will need to set up the database. Use the file named "[mystore_bd-SETUP.sql](/mystore_bd-SETUP.sql)" located in this repo.
-   * _If you want the database without any demo data use the file named "[schema.sql](/schema.sql)" located in this repo._
-   * _If you want to edit the default demo data or add your own demo data, use the file named "[seeds.sql](/seeds.sql)" located in this repo._
+2. You will need to set up the database. Use the files named "[/db/schema.sql](/db/schema.sql)" and "[/db/seeds.sql](/db/seeds.sql)" located in this repo.
+   * _If you want the database without any demo data use the file named "[/db/schema.sql](/db/schema.sql)" located in this repo._
+   * _If you want to edit the default demo data or add your own demo data, use or edit the file named "[seeds.sql](/seeds.sql)" located in this repo._
 
-3. Once you have your database set up, you can edit the configs at the top of the files list below for your specific environment. 
+3. Once you have your database set up, you can edit the database configs at the top of the file listed below for your specific environment. 
 
-    _Edit lines 6 to 16 in "app_customer.js" and "app_supervisor.js"_
+    _Edit lines 10 to 14 in "config/connection.js"_
 
 ## Configure your Database    
 
@@ -33,21 +35,18 @@
 
   // Your password
   password: "",
-  database: "mystore_db"
+  database: "burgers_db"
 ```
 
 4. Once your files are set up you can start using the app.
 
-5. Explore the functionaliy of the Customers area by running the command " _node app_customer.js_ "
+5. Explore the functionaliy of the front end by running the command " _node server.js_ " and visiting "[http://localhost:8080](http://localhost:8080)" 
 
-## Customer Area
+6. The app is also configured to run in heroku, just create an AWS database using the heroku app JAWS_DB and upload the tables.
 
-![app_customer.gif](images/app_customer.gif?raw=true "Customer Area")
+## Front end
 
-6. Explore the functionaliy of the Customers area by running the command " _node app_supervisor.js_ "
+![BurgerMe-1.gif](public/assets/images/BurgerMe-1.gif "Front end")
 
-## Supervisor Area
-
-![app_supervisor.gif](images/app_supervisor.gif?raw=true "Supervisor Area")
 
 ###### Thanks for checking out my project! If you have any questions get in touch!
