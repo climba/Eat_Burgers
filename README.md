@@ -20,7 +20,7 @@
 
 3. Once you have your database set up, you can edit the database configs at the top of the file listed below for your specific environment. 
 
-    _Edit lines 10 to 14 in "config/connection.js"_
+    _Edit lines 10 to 14 in "[/config/connection.js](/config/connection.js)"_
 
 ## Configure your Database    
 
