@@ -1,205 +1,53 @@
-# Node Express Handlebars
+# Command Line interface Ecommerce application
 
-### Overview
+#### This application connects to a database and tracks sales, inventory and department profit and losses.
 
-In this assignment, you'll create a burger logger with MySQL, Node, Express, Handlebars and a homemade ORM (yum!). Be sure to follow the MVC design pattern; use Node and MySQL to query and route data in your app, and Handlebars to generate your HTML.
+## Use Instructions
 
-### Important
+1. To run this app, you'll need to install the following Node packages.
 
-Be sure to utilize the [MYSQL Heroku Deployment Guide](../Supplemental/MySQLHerokuDeploymentProcess.pdf) in order to deploy your assignment.
+   * [CLI Table](https://www.npmjs.com/package/cli-table) run _npm install cli-table_ 
+   
+   * [inquirer](https://www.npmjs.com/package/inquirer) run _npm install inquirer_ 
+   
+   * [mysql](https://www.npmjs.com/package/mysql) run _npm install mysql_ 
 
-### Before You Begin
+2. You will need to set up the database. Use the file named "[mystore_bd-SETUP.sql](/mystore_bd-SETUP.sql)" located in this repo.
+   * _If you want the database without any demo data use the file named "[schema.sql](/schema.sql)" located in this repo._
+   * _If you want to edit the default demo data or add your own demo data, use the file named "[seeds.sql](/seeds.sql)" located in this repo._
 
-* Eat-Da-Burger! is a restaurant app that lets users input the names of burgers they'd like to eat.
+3. Once you have your database set up, you can edit the configs at the top of the files list below for your specific environment. 
 
-* Whenever a user submits a burger's name, your app will display the burger on the left side of the page -- waiting to be devoured.
+    _Edit lines 6 to 16 in "app_customer.js" and "app_supervisor.js"_
 
-* Each burger in the waiting area also has a `Devour it!` button. When the user clicks it, the burger will move to the right side of the page.
+## Configure your Database    
 
-* Your app will store every burger in a database, whether devoured or not.
+```javascript
+  host: "localhost",
 
-* [Check out this video of the app for a run-through of how it works](burger_demo.mp4).
+  // Your port; if not 3306
+  port: 3306,
 
-### Submission on BCS
+  // Your username
+  user: "root",
 
-* Please submit both the deployed Github.io link to your homework AND the link to the Github Repository!
-
-## Instructions
-
-#### App Setup
-
-1. Create a GitHub repo called `burger` and clone it to your computer.
-
-2. Make a package.json file by running `npm init` from the command line.
-
-3. Install the Express npm package: `npm install express`.
-
-4. Create a server.js file.
-
-5. Install the Handlebars npm package: `npm install express-handlebars`.
-
-6. Install the body-parser npm package: `npm install body-parser`.
-
-7. Install MySQL npm package: `npm install mysql`.
-
-8. Require the following npm packages inside of the server.js file:
-   * express
-   * body-parser
-
-#### DB Setup
-
-1. Inside your `burger` directory, create a folder named `db`.
-
-2. In the `db` folder, create a file named `schema.sql`. Write SQL queries this file that do the following:
-
-   * Create the `burgers_db`.
-   * Switch to or use the `burgers_db`.
-   * Create a `burgers` table with these fields:
-     * **id**: an auto incrementing int that serves as the primary key.
-     * **burger_name**: a string.
-     * **devoured**: a boolean.
-
-3. Still in the `db` folder, create a `seeds.sql` file. In this file, write insert queries to populate the `burgers` table with at least three entries.
-
-4. Run the `schema.sql` and `seeds.sql` files into the mysql server from the command line
-
-5. Now you're going to run these SQL files.
-
-   * Make sure you're in the `db` folder of your app.
-
-   * Start MySQL command line tool and login: `mysql -u root -p`.
-
-   * With the `mysql>` command line tool running, enter the command `source schema.sql`. This will run your schema file and all of the queries in it -- in other words, you'll be creating your database.
-
-   * Now insert the entries you defined in `seeds.sql` by running the file: `source seeds.sql`.
-
-   * Close out of the MySQL command line tool: `exit`.
-
-#### Config Setup
-
-1. Inside your `burger` directory, create a folder named `config`.
-
-2. Create a `connection.js` file inside `config` directory.
-
-   * Inside the `connection.js` file, setup the code to connect Node to MySQL.
-
-   * Export the connection.
-
-3. Create an `orm.js` file inside `config` directory.
-
-   * Import (require) `connection.js` into `orm.js`
-
-   * In the `orm.js` file, create the methods that will execute the necessary MySQL commands in the controllers. These are the methods you will need to use in order to retrieve and store data in your database.
-
-     * `selectAll()`
-     * `insertOne()`
-     * `updateOne()`
-
-   * Export the ORM object in `module.exports`.
-
-#### Model setup
-
-* Inside your `burger` directory, create a folder named `models`.
-
-  * In `models`, make a `burger.js` file.
-
-    * Inside `burger.js`, import `orm.js` into `burger.js`
-
-    * Also inside `burger.js`, create the code that will call the ORM functions using burger specific input for the ORM.
-
-    * Export at the end of the `burger.js` file.
-
-#### Controller setup
-
-1. Inside your `burger` directory, create a folder named `controllers`.
-
-2. In `controllers`, create the `burgers_controller.js` file.
-
-3. Inside the `burgers_controller.js` file, import the following:
-
-   * Express
-   * `burger.js`
-
-4. Create the `router` for the app, and export the `router` at the end of your file.
-
-#### View setup
-
-1. Inside your `burger` directory, create a folder named `views`.
-
-   * Create the `index.handlebars` file inside `views` directory.
-
-   * Create the `layouts` directory inside `views` directory.
-
-     * Create the `main.handlebars` file inside `layouts` directory.
-
-     * Setup the `main.handlebars` file so it's able to be used by Handlebars.
-
-     * Setup the `index.handlebars` to have the template that Handlebars can render onto.
-
-     * Create a button in `index.handlebars` that will submit the user input into the database.
-
-#### Directory structure
-
-All the recommended files and directories from the steps above should look like the following structure:
-
-```
-.
-├── config
-│   ├── connection.js
-│   └── orm.js
-│ 
-├── controllers
-│   └── burgers_controller.js
-│
-├── db
-│   ├── schema.sql
-│   └── seeds.sql
-│
-├── models
-│   └── burger.js
-│ 
-├── node_modules
-│ 
-├── package.json
-│
-├── public
-│   ├── assets
-│   │   ├── css
-│   │   │   └── burger_style.css
-│   │   └── img
-│   │       └── burger.png
-│   └── test.html
-│
-├── server.js
-│
-└── views
-    ├── index.handlebars
-    └── layouts
-        └── main.handlebars
+  // Your password
+  password: "",
+  database: "mystore_db"
 ```
 
-### Reminder: Submission on BCS
+4. Once your files are set up you can start using the app.
 
-* Please submit both the deployed Github.io link to your homework AND the link to the Github Repository!
+5. Explore the functionaliy of the Customers area by running the command " _node app_customer.js_ "
 
-- - -
+## Customer Area
 
-### Minimum Requirements
+![app_customer.gif](images/app_customer.gif?raw=true "Customer Area")
 
-Attempt to complete homework assignment as described in instructions. If unable to complete certain portions, please pseudocode these portions to describe what remains to be completed. Hosting on Heroku and adding a README.md are required for this homework. In addition, add this homework to your portfolio, more information can be found below.
- 
-- - -
+6. Explore the functionaliy of the Customers area by running the command " _node app_supervisor.js_ "
 
-### Hosting on Heroku
+## Supervisor Area
 
-Now that we have a backend to our applications, we use Heroku for hosting. Please note that while **Heroku is free**, it will request credit card information if you have more than 5 applications at a time or are adding a database.
+![app_supervisor.gif](images/app_supervisor.gif?raw=true "Supervisor Area")
 
-Please see [Heroku’s Account Verification Information](https://devcenter.heroku.com/articles/account-verification) for more details.
-
-- - -
-
-### Create a README.md
-
-
-- - -
-
+###### Thanks for checking out my project! If you have any questions get in touch!
