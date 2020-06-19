@@ -1,32 +1,29 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var path = require("path");
 
-var PORT = process.env.PORT || 8080;
 
+var apiRoutes = require("./app/routing/apiRoutes.js");
+var htmlRoutes = require("./app/routing/htmlRoutes.js");
+
+// Sets up the Express App
+// =============================================================
+// var app = express();
 var app = express();
+// var PORT = 3000; // Local machine  conf
+var PORT = process.env.PORT || 3000; // heroku conf
 
-// Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("public"));
-
-// parse application/x-www-form-urlencoded
+// Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// parse application/json
 app.use(bodyParser.json());
 
-// Set Handlebars.
-var exphbs = require("express-handlebars");
+app.use('/', htmlRoutes);
+app.use('/api', apiRoutes);
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
 
-// Import routes and give the server access to them.
-var routes = require("./controllers/burgersController.js");
 
-app.use(routes);
-
-// Start our server so that it can begin listening to client requests.
+// Starts the server to begin listening
+// =============================================================
 app.listen(PORT, function() {
-  // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
+    console.log("Server listening on: http://localhost:" + PORT);
 });
