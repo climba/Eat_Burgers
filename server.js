@@ -20,11 +20,6 @@ app.use(bodyParser.json());
 app.use('/', htmlRoutes);
 app.use('/api', apiRoutes);
 
-<<<<<<< HEAD
-=======
-// Import routes and give the server access to them.
-var routes = require("./controllers/catsController.js");
->>>>>>> parent of 3fffd98... Fixed mysql error on click function
 
 
 // Starts the server to begin listening
