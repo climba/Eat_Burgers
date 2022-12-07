@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/climba/Eat_Burgers#readme",
   "dependencies": {
-    "body-parser": "^1.14.2",
-    "express": "^4.13.3",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "express-handlebars": "^2.0.1",
     "mysql": "^2.10.2"
   },
